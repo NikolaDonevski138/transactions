@@ -1,0 +1,95 @@
+.recent-transactions-container {
+  /* padding: 20px; */
+  width: 100%;
+}
+
+.title-container {
+  display: flex;
+  padding: 30px 20px;
+  background-color: rgb(12, 131, 151);
+}
+
+.title-container > :last-child {
+  padding: 0px;
+  margin: 0px;
+  color: white;
+  display: block;
+  flex: 1;
+  text-align: center;
+}
+
+.transaction-item-container {
+  display: flex;
+  padding: 0px 20px;
+}
+
+.logo-recent-transactions {
+  background-color: rgb(12, 131, 151) !important;
+}
+
+.controls {
+  padding: 40px 20px;
+  display: flex;
+}
+
+.sort-container-group {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.controls-btn {
+  border: 1px solid #ccc;
+  background-color: white;
+  height: fit-content;
+  padding: 10px 15px;
+}
+
+.custom-select {
+  height: fit-content;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+.searchingInput {
+  flex: 1;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+}
+
+.transaction-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-left: 10px solid green;
+}
+
+.transaction-info-container {
+  display: flex;
+}
+
+.date {
+  padding: 0px 20px;
+}
+
+.img {
+  padding: 0px 30px;
+  width: 50px;
+  height: 50px;
+}
+
+.merchant {
+  padding: 0px;
+  margin: 0px;
+}
+
+.merchant-container {
+  padding-left: 15px;
+}

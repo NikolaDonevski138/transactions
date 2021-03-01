@@ -10,10 +10,17 @@ import { HeaderComponent } from './header/header.component';
 import { MakeTransferComponent } from './make-transfer/make-transfer.component';
 import * as fromApp from './store/app.reducer';
 import { RecentTransactionsComponent } from './recent-transactions/recent-transactions.component'
+import { CustomDatePipe } from './pipes/dataTransformPipe';
 
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, MakeTransferComponent, RecentTransactionsComponent],
+  declarations: [
+    AppComponent,
+     HeaderComponent,
+      MakeTransferComponent,
+       RecentTransactionsComponent,
+        CustomDatePipe
+      ],
   imports: [BrowserModule, 
     AppRoutingModule,
     ReactiveFormsModule,
