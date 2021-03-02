@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, DoCheck, Input } from '@angular/core';
 import { TransactionState } from '../store/transaction.reducer';
 import {
   FormControl,
@@ -15,7 +15,7 @@ import * as fromApp from '../store/transaction.reducer';
   templateUrl: './recent-transactions.component.html',
   styleUrls: ['./recent-transactions.component.css'],
 })
-export class RecentTransactionsComponent implements OnInit {
+export class RecentTransactionsComponent implements OnInit, DoCheck {
   @Input() transactions: TransactionState | any;
   recentTransactionsControls: any;
   sortBy: string[] = ['DATE', 'BENEFICIARY', 'AMOUNT'];
@@ -25,7 +25,7 @@ export class RecentTransactionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.recentTransactionsControls = new FormGroup({
-      searchByTyping: new FormControl(null, Validators.required),
+      searchByTyping: new FormControl('', Validators.required),
       sort: new FormControl(null, Validators.required),
       // sortByType: this.fb.group({
       //   sortBy: ['DATE', [Validators.required]],

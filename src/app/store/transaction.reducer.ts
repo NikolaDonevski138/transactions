@@ -1,5 +1,6 @@
 import * as fromActions from './transaction.actions';
 import { Action } from '@ngrx/store';
+import { ActionSequence } from 'protractor';
 
 export interface TransactionState {
   items: any[];
@@ -104,34 +105,51 @@ export function transactionReducer(
   state: TransactionState = initialState,
   action: any
 ) {
+  // console.log('action.type', action.type)
   switch (action.type) {
     case fromActions.TRANSFER_MONEY:
-      return state;
-    case fromActions.FILTER_TRANSACTIONS_BY_SEARCH:
-      if (action.payload === null) {
-        return {
-          ...state,
-        };
-      } else {
-        console.log(
-          state.items.map((el) => {
-            return Object.values(el).includes(action.payload);
-            // action.payload.includes(Object.values(el))
-          }),
-          'test'
-        );
-        // state.items.filter((el) => {
-        //   console.log(el);
-        // });
-
-        return {
-          ...state,
-        };
+      return {
+        ...state,
+        items:[action.payload,...state.items]
       }
-    //   return {
-    //     ...state,
-    //     items: [state.items.includes(action.payload)],
-    //   };
+    case fromActions.FILTER_TRANSACTIONS_BY_SEARCH:
+    console.log('DDDDDJDJDJDJDJD', state.items)
+    const filteredItems = state.items.filter((item) => {
+      //if(action.payload !== null){
+        console.log('item', item);
+      // for(const property in item){
+      //   // console.log('DDDDDD', item[property].toString().includes(action.payload));
+      //   // return item[property].toString().includes(action.payload);
+      //    if(item[property].toString().includes(action.payload)){
+      //      console.log('ITEEEM', item)
+      //      return item
+      //    }
+      //   }
+      console.log('BLABLA', item.merchant.includes(action.payload), item.merchant, action.payload)
+      return (
+        item.amount.includes(action.payload) ||
+        item.categoryCode.includes(action.payload) ||
+        item.merchant.includes(action.payload) ||
+        item.transactionType.includes(action.payload)
+      );
+     // }
+    })
+    console.log('filteredItems', filteredItems);
+    // let filteredObjects = {...state,items:[...state.items]}
+    // if(action.payload !== null) {
+    //   filteredObjects = {...state,items:[...filteredItems]}
+    // }
+    // console.log(filteredObjects,'alooo')
+
+    let filteredObjects = {items: [...state.items]};
+
+    if (action.payload !== null) {
+      console.log('NOT NULL');
+      filteredObjects = {...state,items: [...filteredItems]};
+    }
+    console.log(filteredObjects,'alooo')
+    return {...state};
+
     default:
       return state;
   }

@@ -4,8 +4,12 @@ export const TRANSFER_MONEY = 'TRANSFER_MONEY';
 export const FILTER_TRANSACTIONS_BY_SEARCH = 'FILTER_TRANSACTIONS_BY_SEARCH';
 
 export interface Transaction {
-  toAccount: string;
-  amount: string;
+      amount: string,
+      categoryCode?: string,
+      merchant: string,
+      merchantLogo?: string
+      transactionDate?: number,
+      transactionType?: 'Card Payment',
 }
 
 export class TransferMoney implements Action {
