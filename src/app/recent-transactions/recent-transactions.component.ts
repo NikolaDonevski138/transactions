@@ -1,46 +1,54 @@
 import {
   Component,
   OnInit,
-  OnChanges,
   Input,
-  SimpleChanges,
 } from '@angular/core';
 import { TransactionState } from '../store/transaction.reducer';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import * as fromActions from '../store/transaction.actions';
-import * as fromApp from '../store/transaction.reducer';
+import * as appStore from '../store';
+import * as transactionActions from '../store/transaction.actions';
+import { Subject, Observable } from 'rxjs';
+import { takeUntil } from 'rxjs/operators'
+import { UnsubscribeComponent } from '../shared/components/unsubscribe/unsubscribe.component';
+import { ItemDto } from '../shared/models/item.dto';
 
 @Component({
   selector: 'app-recent-transactions',
   templateUrl: './recent-transactions.component.html',
   styleUrls: ['./recent-transactions.component.css'],
 })
-export class RecentTransactionsComponent implements OnInit, OnChanges {
-  @Input() transactions: TransactionState | any;
-  recentTransactionsControls: any;
+export class RecentTransactionsComponent extends UnsubscribeComponent implements OnInit {
+  items$: Observable<ItemDto[]>;
+  recentTransactionsControls: FormGroup ;
   sortBy: string[] = ['DATE', 'BENEFICIARY', 'AMOUNT'];
   search: string;
 
-  constructor(private store: Store<fromApp.TransactionState>) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private appStore: Store<appStore.AppState>
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
+    this.items$ = this.appStore.select(appStore.getFilteredItems);
+    this.items$.subscribe((items) => console.log(items))
     this.recentTransactionsControls = new FormGroup({
       searchByTyping: new FormControl('', Validators.required),
-      sort: new FormControl(null, Validators.required),
       date: new FormControl('Date'),
-    });
+     });
     this.recentTransactionsControls
-      .get('searchByTyping')
-      .valueChanges.pipe()
-      .subscribe((text: any) => {
-        this.store.dispatch(new fromActions.FilterTransactionsBySearch(text));
+      .controls.searchByTyping
+      .valueChanges.pipe(takeUntil(this.destroyed$))
+      .subscribe((text:string) => {
+        this.appStore.dispatch(new transactionActions.FilterTransactionsBySearch(text));
       });
     this.recentTransactionsControls
-      .get('date')
-      .valueChanges.pipe()
+      .controls.date
+      .valueChanges.pipe(takeUntil(this.destroyed$))
       .subscribe((sortType: any) => {
-        this.store.dispatch(new fromActions.SortCollection(sortType));
+        this.appStore.dispatch(new transactionActions.SortCollection(sortType));
       });
   }
 
@@ -49,10 +57,7 @@ export class RecentTransactionsComponent implements OnInit, OnChanges {
   }
 
   onAmount() {
-    this.store.dispatch(new fromActions.SortByAmount());
+    this.appStore.dispatch(new transactionActions.SortByAmount());
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
-  }
 }

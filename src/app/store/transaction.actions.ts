@@ -22,7 +22,7 @@ export class TransferMoney implements Action {
 
 export class FilterTransactionsBySearch implements Action {
   readonly type = FILTER_TRANSACTIONS_BY_SEARCH;
-  constructor(public payload: any) {}
+  constructor(public searchText: string) {}
 }
 
 export class SortCollection implements Action {

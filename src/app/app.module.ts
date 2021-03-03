@@ -8,10 +8,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MakeTransferComponent } from './make-transfer/make-transfer.component';
-import * as fromApp from './store/app.reducer';
+import * as fromApp from './store';
 import { RecentTransactionsComponent } from './recent-transactions/recent-transactions.component';
 import { CustomDatePipe } from './pipes/dataTransformPipe';
 import { ModalComponent } from './shared/custom-modal/modal.component';
+import { UnsubscribeComponent } from './shared/components/unsubscribe/unsubscribe.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ModalComponent } from './shared/custom-modal/modal.component';
     RecentTransactionsComponent,
     CustomDatePipe,
     ModalComponent,
+    UnsubscribeComponent
   ],
   imports: [
     BrowserModule,
