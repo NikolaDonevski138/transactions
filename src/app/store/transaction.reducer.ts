@@ -4,6 +4,7 @@ import { ActionSequence } from 'protractor';
 
 export interface TransactionState {
   items: any[];
+  searchText?: any;
 }
 
 const initialState: TransactionState = {
@@ -109,28 +110,31 @@ export function transactionReducer(
   switch (action.type) {
     case fromActions.TRANSFER_MONEY:
       return {
-        ...initialState,
+        ...state,
         items: [action.payload, ...state.items],
       };
 
     case fromActions.FILTER_TRANSACTIONS_BY_SEARCH:
       // const copyOfState = state.items.slice();
-      const filteredItems = initialState.items.filter((item) => {
-        if (action.payload) {
-          for (const property in item) {
-            if (item[property].toString().includes(action.payload)) {
-              return item;
-            }
-          }
-        } else {
-          return item;
-        }
+
+      return Object.assign({}, state, {
+        searchText: action.payload,
       });
-      console.log(filteredItems);
-      return {
-        ...state,
-        items: filteredItems,
-      };
+    // const filteredItems = state.items.slice().filter((item) => {
+    //   if (action.payload) {
+    //     for (const property in item) {
+    //       if (item[property].toString().includes(action.payload)) {
+    //         return item;
+    //       }
+    //     }
+    //   } else {
+    //     return item;
+    //   }
+    // });
+    // console.log(filteredItems);
+    // return {
+    //   ...state,
+    // };
 
     case fromActions.SORT_COLLECTION:
       const sortedCollection = state.items.slice().sort((a: any, b: any) => {
@@ -161,46 +165,31 @@ export function transactionReducer(
         items: [...sortedCollection],
       };
 
+    case fromActions.SORT_BY_AMOUNT:
+      console.log('dali vleguva ovde?');
+      const sortedItemsByAmount = state.items.slice().sort((a: any, b: any) => {
+        let amountA = +a.amount;
+        let amountB = +b.amount;
+        if (amountA < amountB) {
+          return -1;
+        }
+        if (amountA > amountB) {
+          return 1;
+        }
+        // if (amountA < amountB) {
+        //   return 1;
+        // }
+        // if (amountA > amountB) {
+        //   return -1;
+        // }
+        return 0;
+      });
+      return {
+        ...state,
+        items: [...sortedItemsByAmount],
+      };
+
     default:
       return state;
   }
 }
-
-// const filteredItems = state.items.filter((item) => {
-//     //if(action.payload !== null){
-//       console.log('item', item);
-//     // for(const property in item){
-//     //   // console.log('DDDDDD', item[property].toString().includes(action.payload));
-//     //   // return item[property].toString().includes(action.payload);
-//     //    if(item[property].toString().includes(action.payload)){
-//     //      console.log('ITEEEM', item)
-//     //      return item
-//     //    }
-//     //   }
-//   //   console.log('BLABLA', item.merchant.includes(action.payload), item.merchant, action.payload)
-//   //   return (
-//   //     item.amount.includes(action.payload) ||
-//   //     item.categoryCode.includes(action.payload) ||
-//   //     item.merchant.includes(action.payload) ||
-//   //     item.transactionType.includes(action.payload)
-//   //   );
-//   //  // }
-//   // })
-//   console.log('filteredItems', filteredItems);
-//   // let filteredObjects = {...state,items:[...state.items]}
-//   // if(action.payload !== null) {
-//   //   filteredObjects = {...state,items:[...filteredItems]}
-//   // }
-//   // console.log(filteredObjects,'alooo')
-
-//   // let filteredObjects = {items: [...state.items]};
-
-//   // if (action.payload !== null) {
-//   //   console.log('NOT NULL');
-//   //   filteredObjects = {...state,items: [...filteredItems]};
-//   // }
-//   // console.log(filteredObjects,'alooo')
-//   // return {...state};
-//   return {
-//     ...state
-//   }

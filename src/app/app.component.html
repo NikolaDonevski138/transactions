@@ -1,3 +1,7 @@
 <app-header></app-header>
-<app-make-transfer></app-make-transfer>
-<app-recent-transactions [transactions]="transactions | async"></app-recent-transactions>
+<div class="main">
+  <app-make-transfer></app-make-transfer>
+  <app-recent-transactions
+    [transactions]="transactions | async"
+  ></app-recent-transactions>
+</div>

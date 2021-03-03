@@ -3,6 +3,8 @@ import { Action } from '@ngrx/store';
 export const TRANSFER_MONEY = 'TRANSFER_MONEY';
 export const FILTER_TRANSACTIONS_BY_SEARCH = 'FILTER_TRANSACTIONS_BY_SEARCH';
 export const SORT_COLLECTION = 'SORT_COLLECTION';
+export const SORT_BY_BENEFICIARY = 'SORT_BY_BENEFICIARY';
+export const SORT_BY_AMOUNT = 'SORT_BY_AMOUNT';
 
 export interface Transaction {
   amount: string;
@@ -28,7 +30,17 @@ export class SortCollection implements Action {
   constructor(public payload: any) {}
 }
 
+export class SortByBeneficiary implements Action {
+  readonly type = SORT_BY_BENEFICIARY;
+}
+
+export class SortByAmount implements Action {
+  readonly type = SORT_BY_AMOUNT;
+}
+
 export type TransactionsActions =
   | TransferMoney
   | FilterTransactionsBySearch
-  | SortCollection;
+  | SortCollection
+  | SortByBeneficiary
+  | SortByAmount;

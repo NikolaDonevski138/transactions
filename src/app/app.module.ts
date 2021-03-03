@@ -9,19 +9,21 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MakeTransferComponent } from './make-transfer/make-transfer.component';
 import * as fromApp from './store/app.reducer';
-import { RecentTransactionsComponent } from './recent-transactions/recent-transactions.component'
+import { RecentTransactionsComponent } from './recent-transactions/recent-transactions.component';
 import { CustomDatePipe } from './pipes/dataTransformPipe';
-
+import { ModalComponent } from './shared/custom-modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-     HeaderComponent,
-      MakeTransferComponent,
-       RecentTransactionsComponent,
-        CustomDatePipe
-      ],
-  imports: [BrowserModule, 
+    HeaderComponent,
+    MakeTransferComponent,
+    RecentTransactionsComponent,
+    CustomDatePipe,
+    ModalComponent,
+  ],
+  imports: [
+    BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     StoreModule.forRoot(fromApp.appReducer),

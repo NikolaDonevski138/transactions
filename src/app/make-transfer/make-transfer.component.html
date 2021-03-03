@@ -2,6 +2,12 @@
   <div class="header">
     <h1>Make a Transfer</h1>
   </div>
+  <modal-info
+    [message]="messageForModal"
+    *ngIf="submitedForTransaction"
+    (close)="onClose()"
+    (confirm)="onSuccess()"
+  ></modal-info>
   <form [formGroup]="makeTransfer" (ngSubmit)="onSubmit()">
     <div formGroupName="accountname">
       <div style="margin-top: 30px">

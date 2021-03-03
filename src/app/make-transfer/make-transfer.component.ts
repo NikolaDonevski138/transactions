@@ -13,8 +13,9 @@ export class MakeTransferComponent implements OnInit {
   fromAccount: string = '';
   toAccount: string;
   amount: string;
-
-  constructor(private store:Store<fromApp.TransactionState>) {}
+  messageForModal: 'Do you want to make transaction ?';
+  submitedForTransaction = false;
+  constructor(private store: Store<fromApp.TransactionState>) {}
 
   ngOnInit(): void {
     this.makeTransfer = new FormGroup({
@@ -37,6 +38,22 @@ export class MakeTransferComponent implements OnInit {
     });
   }
 
+  onClose() {
+    this.submitedForTransaction = false;
+  }
+  onSuccess() {
+    let start: Date = new Date(Date.now());
+    let dateInSeconds: number = Date.parse(start.toString());
+    this.store.dispatch(
+      new fromActions.TransferMoney({
+        amount: this.amount,
+        merchant: this.toAccount,
+        transactionDate: dateInSeconds,
+      })
+    );
+    this.submitedForTransaction = false;
+  }
+
   onSubmit() {
     console.log(this.makeTransfer);
     this.fromAccount = this.makeTransfer.get('accountname.fromaccount').value;
@@ -49,13 +66,7 @@ export class MakeTransferComponent implements OnInit {
       },
       amount: null,
     });
-    let start:Date = new Date(Date.now());
-    let dateInSeconds:number  = Date.parse(start.toString())
-    this.store.dispatch(
-      new fromActions.TransferMoney(
-        {amount:this.amount,merchant:this.toAccount,transactionDate:dateInSeconds}
-      )
-    );
+    this.submitedForTransaction = true;
   }
 
   isNumberAboveTheLimit(control: FormControl): { [s: string]: boolean } | null {
@@ -63,5 +74,9 @@ export class MakeTransferComponent implements OnInit {
       return { numberIsAboveLimit: true };
     }
     return null;
+  }
+
+  ngDoCheck() {
+    console.log(this.submitedForTransaction, 'submitedfortransaction');
   }
 }
