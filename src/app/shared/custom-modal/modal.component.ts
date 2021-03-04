@@ -9,6 +9,7 @@ export class ModalComponent {
   @Input() message: string;
   @Output() close = new EventEmitter<void>();
   @Output() confirm = new EventEmitter<void>();
+
   onClose() {
     this.close.emit();
   }

@@ -5,14 +5,28 @@ import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { AppRoutingModule } from './app-routing.module';
+import { RouterModule, Routes } from '@angular/router';
+
+import * as fromApp from './shared/store';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { MakeTransferComponent } from './make-transfer/make-transfer.component';
-import * as fromApp from './store';
-import { RecentTransactionsComponent } from './recent-transactions/recent-transactions.component';
-import { CustomDatePipe } from './pipes/dataTransformPipe';
-import { ModalComponent } from './shared/custom-modal/modal.component';
+import { HeaderComponent } from './core/header/header.component';
+import { RecentTransactionsComponent } from './main/recent-transactions/recent-transactions.component';
 import { UnsubscribeComponent } from './shared/components/unsubscribe/unsubscribe.component';
+import { ModalComponent } from './shared/custom-modal/modal.component';
+import { CustomDatePipe } from './shared/pipes/dataTransformPipe';
+import { MakeTransferComponent } from './main/make-transfer/make-transfer.component';
+
+const appRoutes: Routes = [
+  { path: '', redirectTo: '/transactions', pathMatch: 'full' },
+  {
+    path: 'transactions',
+    component: AppComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  },
+];
 
 @NgModule({
   declarations: [
@@ -22,12 +36,13 @@ import { UnsubscribeComponent } from './shared/components/unsubscribe/unsubscrib
     RecentTransactionsComponent,
     CustomDatePipe,
     ModalComponent,
-    UnsubscribeComponent
+    UnsubscribeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    RouterModule.forChild(appRoutes),
     StoreModule.forRoot(fromApp.appReducer),
     StoreRouterConnectingModule.forRoot(),
   ],

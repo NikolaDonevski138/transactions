@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import * as fromActions from '../store/transaction.actions';
-import * as fromApp from '../store/transaction.reducer';
+import * as fromActions from '../../shared/store/transaction.actions';
+import * as fromApp from '../../shared/store/transaction.reducer';
+
 @Component({
   selector: 'app-make-transfer',
   templateUrl: './make-transfer.component.html',
@@ -13,7 +14,7 @@ export class MakeTransferComponent implements OnInit {
   fromAccount: string = '';
   toAccount: string;
   amount: string;
-  messageForModal: 'Do you want to make transaction ?';
+  messageForModal: string = 'Do you want to make transaction ?';
   submitedForTransaction = false;
   constructor(private store: Store<fromApp.TransactionState>) {}
 
@@ -51,14 +52,6 @@ export class MakeTransferComponent implements OnInit {
         transactionDate: dateInSeconds,
       })
     );
-    this.submitedForTransaction = false;
-  }
-
-  onSubmit() {
-    console.log(this.makeTransfer);
-    this.fromAccount = this.makeTransfer.get('accountname.fromaccount').value;
-    this.toAccount = this.makeTransfer.get('accountname.toaccount').value;
-    this.amount = this.makeTransfer.get('amount').value;
     this.makeTransfer.reset({
       accountname: {
         fromaccount: this.fromAccount,
@@ -66,7 +59,17 @@ export class MakeTransferComponent implements OnInit {
       },
       amount: null,
     });
-    this.submitedForTransaction = true;
+    this.submitedForTransaction = false;
+  }
+
+  onSubmit() {
+    this.fromAccount = this.makeTransfer.get('accountname.fromaccount').value;
+    this.toAccount = this.makeTransfer.get('accountname.toaccount').value;
+    this.amount = this.makeTransfer.get('amount').value;
+
+    if (this.makeTransfer.status === 'VALID') {
+      this.submitedForTransaction = true;
+    }
   }
 
   isNumberAboveTheLimit(control: FormControl): { [s: string]: boolean } | null {
@@ -74,9 +77,5 @@ export class MakeTransferComponent implements OnInit {
       return { numberIsAboveLimit: true };
     }
     return null;
-  }
-
-  ngDoCheck() {
-    console.log(this.submitedForTransaction, 'submitedfortransaction');
   }
 }

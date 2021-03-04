@@ -17,13 +17,6 @@
       />
       <div class="sort-container-group">
         <p style="padding-right: 10px">Sort by</p>
-        <!-- <div formGroupName="sortByType">
-        <select class="custom-select" formControlName="sortBy">
-          <option *ngFor="let item of sortBy">
-            {{ item }}
-          </option>
-        </select>
-      </div> -->
         <select id="status" formControlName="date" class="controls-btn">
           <option selected disabled>Date</option>
           <option value="ascending">Ascending</option>
@@ -35,10 +28,7 @@
         <button class="controls-btn" (click)="onAmount()">AMOUNT</button>
       </div>
     </div>
-    <div
-      class="transaction-item-container"
-      *ngFor="let item of items$ | async"
-    >
+    <div class="transaction-item-container" *ngFor="let item of items$ | async">
       <div class="transaction-item">
         <div class="transaction-info-container">
           <p class="date">{{ item.transactionDate | customDate }}</p>

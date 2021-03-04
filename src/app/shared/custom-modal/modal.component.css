@@ -24,6 +24,9 @@
 }
 
 .btn {
-  background-color: blue;
-  color: black;
+  background-color: rgb(7, 7, 8);
+  color: white;
+  padding: 10px 20px;
+  margin: 0px 10px;
+  border: none;
 }
