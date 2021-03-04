@@ -46,11 +46,11 @@ export class RecentTransactionsComponent
       });
   }
 
-  onBeneficiary() {
+  onBeneficiary(): void {
     this.appStore.dispatch(new transactionActions.SortByBeneficiary());
   }
 
-  onAmount() {
+  onAmount(): void {
     this.appStore.dispatch(new transactionActions.SortByAmount());
   }
 }

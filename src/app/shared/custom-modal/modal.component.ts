@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'modal-info',
+  selector: 'custom-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css'],
 })
@@ -10,11 +10,11 @@ export class ModalComponent {
   @Output() close = new EventEmitter<void>();
   @Output() confirm = new EventEmitter<void>();
 
-  onClose() {
+  onClose(): void {
     this.close.emit();
   }
 
-  onConfirm() {
+  onConfirm(): void {
     this.confirm.emit();
   }
 }

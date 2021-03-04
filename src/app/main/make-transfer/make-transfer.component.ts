@@ -10,39 +10,34 @@ import * as fromApp from '../../shared/store/transaction.reducer';
   styleUrls: ['./make-transfer.component.css'],
 })
 export class MakeTransferComponent implements OnInit {
-  makeTransfer: any;
-  fromAccount: string = '';
+  makeTransferGroup: any;
   toAccount: string;
   amount: string;
-  messageForModal: string = 'Do you want to make transaction ?';
+  messageForModal = 'Do you want to make transaction ?';
   submitedForTransaction = false;
   constructor(private store: Store<fromApp.TransactionState>) {}
 
   ngOnInit(): void {
-    this.makeTransfer = new FormGroup({
-      accountname: new FormGroup({
-        fromaccount: new FormControl(
-          { value: this.fromAccount, disabled: true },
+    this.makeTransferGroup = new FormGroup({
+      accountName: new FormGroup({
+        fromAccount: new FormControl(
+          { value: 'Free Checking(4692) - $5824.76', disabled: true },
           Validators.required
         ),
-        toaccount: new FormControl(null, Validators.required),
+        toAccount: new FormControl(null, Validators.required),
       }),
       amount: new FormControl(null, [
         Validators.required,
         this.isNumberAboveTheLimit.bind(this),
       ]),
     });
-    this.makeTransfer.patchValue({
-      accountname: {
-        fromaccount: 'Free Checking(4692) - $5824.76',
-      },
-    });
   }
 
-  onClose() {
+  onClose(): void {
     this.submitedForTransaction = false;
   }
-  onSuccess() {
+
+  onSuccess(): void {
     let start: Date = new Date(Date.now());
     let dateInSeconds: number = Date.parse(start.toString());
     this.store.dispatch(
@@ -52,22 +47,22 @@ export class MakeTransferComponent implements OnInit {
         transactionDate: dateInSeconds,
       })
     );
-    this.makeTransfer.reset({
-      accountname: {
-        fromaccount: this.fromAccount,
-        toaccount: null,
+    this.makeTransferGroup.reset({
+      accountName: {
+        fromAccount: 'Free Checking(4692) - $5824.76',
+        toAccount: null,
       },
       amount: null,
     });
     this.submitedForTransaction = false;
   }
 
-  onSubmit() {
-    this.fromAccount = this.makeTransfer.get('accountname.fromaccount').value;
-    this.toAccount = this.makeTransfer.get('accountname.toaccount').value;
-    this.amount = this.makeTransfer.get('amount').value;
-
-    if (this.makeTransfer.status === 'VALID') {
+  onSubmit(): void {
+    this.toAccount = this.makeTransferGroup.controls[
+      'accountName'
+    ].value.toAccount;
+    this.amount = this.makeTransferGroup.controls['amount'].value;
+    if (this.makeTransferGroup.status === 'VALID') {
       this.submitedForTransaction = true;
     }
   }

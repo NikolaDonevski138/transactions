@@ -27,7 +27,7 @@ export class FilterTransactionsBySearch implements Action {
 
 export class SortCollection implements Action {
   readonly type = SORT_COLLECTION;
-  constructor(public payload: any) {}
+  constructor(public payload: string) {}
 }
 
 export class SortByBeneficiary implements Action {

@@ -2,30 +2,32 @@
   <div class="header">
     <h1>Make a Transfer</h1>
   </div>
-  <modal-info
+
+  <custom-modal
     [message]="messageForModal"
     *ngIf="submitedForTransaction"
     (close)="onClose()"
     (confirm)="onSuccess()"
-  ></modal-info>
-  <form [formGroup]="makeTransfer" (ngSubmit)="onSubmit()">
-    <div formGroupName="accountname">
+  ></custom-modal>
+
+  <form [formGroup]="makeTransferGroup" (ngSubmit)="onSubmit()">
+    <div formGroupName="accountName">
       <div style="margin-top: 30px">
         <label for="fromacc">FROM ACCOUNT</label>
         <input
           type="text"
           id="fromacc"
-          formControlName="fromaccount"
+          formControlName="fromAccount"
           [disabled]="true"
         />
       </div>
       <div style="margin-top: 30px">
         <label for="toacc">TO ACCOUNT</label>
-        <input type="text" id="toacc" formControlName="toaccount" />
+        <input type="text" id="toacc" formControlName="toAccount" />
         <span
           *ngIf="
-            !makeTransfer.get('accountname.toaccount').valid &&
-            makeTransfer.get('accountname.toaccount').touched
+            !makeTransferGroup.get('accountName.toAccount').valid &&
+            makeTransferGroup.get('accountName.toAccount').touched
           "
           ><p>Please enter the name to sending account</p></span
         >
@@ -38,14 +40,17 @@
       </div>
       <span
         *ngIf="
-          !makeTransfer.get('amount').valid &&
-          makeTransfer.get('amount').touched
+          !makeTransferGroup.controls['amount'].valid &&
+          makeTransferGroup.controls['amount'].touched
         "
       >
-        <span *ngIf="makeTransfer.get('amount').errors['required']"
+        <span *ngIf="makeTransferGroup.controls['amount'].errors?.required"
           ><p>This field is required</p></span
         >
-        <span *ngIf="makeTransfer.get('amount').errors['numberIsAboveLimit']"
+        <span
+          *ngIf="
+            makeTransferGroup.controls['amount'].errors?.numberIsAboveLimit
+          "
           ><p>Please enter amount between 1 and 500$</p></span
         >
       </span>

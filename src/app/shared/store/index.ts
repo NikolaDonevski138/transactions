@@ -6,13 +6,15 @@ export const getTransaction = (state: AppState) => state.transaction;
 
 export const getItems = createSelector(
   getTransaction,
-  (transactionState: transactionReducer.TransactionState) => transactionState.items
+  (transactionState: transactionReducer.TransactionState) =>
+    transactionState.items
 );
 
 export const getFilteredItems = createSelector(
   getTransaction,
-  (transactionState: transactionReducer.TransactionState) => transactionState.filteredItems
-)
+  (transactionState: transactionReducer.TransactionState) =>
+    transactionState.filteredItems
+);
 
 export interface AppState {
   transaction: transactionReducer.TransactionState;
