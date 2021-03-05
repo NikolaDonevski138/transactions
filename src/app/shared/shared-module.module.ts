@@ -20,8 +20,8 @@ import { CustomDatePipe } from './pipes/dataTransformPipe';
     UnsubscribeComponent,
     ModalComponent,
     CustomDatePipe,
-    StoreModule,
-    StoreRouterConnectingModule,
+    // StoreModule,
+    // StoreRouterConnectingModule,
     CommonModule,
   ],
 })

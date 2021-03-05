@@ -1,4 +1,4 @@
-import {Directive,ElementRef,OnInit, Renderer2, Input, DoCheck} from '@angular/core'
+import {Directive,ElementRef,OnInit, Renderer2, Input} from '@angular/core'
 const merchantColors:any = {
     'The Tea Lounge': 'red',
     'Texaco': 'green',
@@ -17,7 +17,6 @@ const merchantColors:any = {
 export class ItemTransactionBorderDirective implements OnInit  {
     @Input() itemTransactionBorder: any;
     constructor(private renderer:Renderer2, private elementRef: ElementRef){
-        console.log(this.itemTransactionBorder)
     }
 
     ngOnInit(){

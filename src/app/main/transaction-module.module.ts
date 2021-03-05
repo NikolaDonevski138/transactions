@@ -3,10 +3,11 @@ import { RecentTransactionsComponent } from './recent-transactions/recent-transa
 import { MakeTransferComponent } from './make-transfer/make-transfer.component';
 import { SharedModule } from '../shared/shared-module.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MainComponent } from './main.component';
 
 @NgModule({
-  declarations: [RecentTransactionsComponent, MakeTransferComponent],
+  declarations: [MainComponent,RecentTransactionsComponent, MakeTransferComponent],
   imports: [ReactiveFormsModule, SharedModule],
-  exports: [RecentTransactionsComponent, MakeTransferComponent],
+  //exports: [MainComponent,RecentTransactionsComponent, MakeTransferComponent],
 })
 export class TransactionModule {}
