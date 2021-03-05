@@ -1,0 +1,53 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    padding: 50px;
+  }
+  
+  .main :first-child {
+    flex: 1;
+  }
+  
+  .main :nth-child(2) {
+    flex: 3;
+  }
+  
+  @media screen and (max-width: 1555px) {
+    .main :first-child {
+      flex: 1;
+    }
+  
+    .main :nth-child(2) {
+      flex: 2;
+    }
+  }
+  
+  @media screen and (max-width: 1175px) {
+    .main :first-child {
+      flex: 1;
+    }
+  
+    .main :nth-child(2) {
+      flex: 1;
+    }
+  }
+  
+  @media screen and (max-width: 1175px) {
+    .main {
+      display: flex;
+      flex-direction: column;
+      margin-top: 50px;
+      padding: 50px;
+    }
+  }
+  
+  @media screen and (max-width: 504) {
+    .main {
+      display: flex;
+      flex-direction: column;
+      margin-top: 50px;
+      padding: 0px !important;
+    }
+  }
+  
