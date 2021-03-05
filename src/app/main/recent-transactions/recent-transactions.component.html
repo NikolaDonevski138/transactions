@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="transaction-item-container" *ngFor="let item of items$ | async">
-      <div class="transaction-item">
+      <div [itemTransactionBorder]='item.merchant' class="transaction-item">
         <div class="transaction-info-container">
           <p class="date">{{ item.transactionDate | customDate }}</p>
           <img class="img" [src]="item.merchantLogo" />

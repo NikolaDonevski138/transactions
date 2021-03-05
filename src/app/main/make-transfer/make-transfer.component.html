@@ -26,8 +26,8 @@
         <input type="text" id="toacc" formControlName="toAccount" />
         <span
           *ngIf="
-            !makeTransferGroup.get('accountName.toAccount').valid &&
-            makeTransferGroup.get('accountName.toAccount').touched
+          makeTransferGroup.controls['accountName'].controls['toAccount']?.status === 'VALID' ? false : true &&
+          makeTransferGroup.controls['accountName'].controls['toAccount'].touched
           "
           ><p>Please enter the name to sending account</p></span
         >
