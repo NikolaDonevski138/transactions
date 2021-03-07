@@ -1,3 +1,4 @@
+<div class="container">
 <div [formGroup]="recentTransactionsControls">
   <div class="recent-transactions-container">
     <div class="title-container">
@@ -8,41 +9,44 @@
       />
       <p>Recent Transactions</p>
     </div>
-    <div class="controls">
-      <input
-        class="searchingInput"
-        type="text"
-        placeholder="Search by typing..."
-        formControlName="searchByTyping"
-      />
-      <div class="sort-container-group">
-        <p style="padding-right: 10px">Sort by</p>
-        <select id="status" formControlName="date" class="controls-btn">
-          <option selected disabled>Date</option>
-          <option value="ascending">Ascending</option>
-          <option value="descending">Descending</option>
-        </select>
-        <button class="controls-btn" (click)="onBeneficiary()">
-          BENEFICIARY
-        </button>
-        <button class="controls-btn" (click)="onAmount()">AMOUNT</button>
-      </div>
-    </div>
-    <div class="transaction-item-container" *ngFor="let item of items$ | async">
-      <div [itemTransactionBorder]='item.merchant' class="transaction-item">
-        <div class="transaction-info-container">
-          <p class="date">{{ item.transactionDate | customDate }}</p>
-          <img class="img" [src]="item.merchantLogo" />
-          <div class="merchant-container">
-            <p class="merchant">{{ item.merchant }}</p>
-            <p class="transactionType">{{ item.transactionType }}</p>
-            <div class="amount-mobile">-${{ item.amount }}</div>
-          </div>
+    <div class="recent-transaction-ControlsAndList-container">
+      <div class="controls">
+        <input
+          class="searchingInput"
+          type="text"
+          placeholder="Search by typing..."
+          formControlName="searchByTyping"
+        />
+        <div class="sort-container-group">
+          <p style="padding:0px 10px; margin-bottom: 0px;">Sort by</p>
+          <select id="status" formControlName="date" class="controls-btn">
+            <option selected disabled>Date</option>
+            <option value="ascending">Ascending</option>
+            <option value="descending">Descending</option>
+          </select>
+          <button class="controls-btn" (click)="onBeneficiary()">
+            BENEFICIARY
+          </button>
+          <button class="controls-btn" (click)="onAmount()">AMOUNT</button>
         </div>
-        <div class="amount-container">
-          <div class="amount">-${{ item.amount }}</div>
+      </div>
+      <div class="transaction-item-container" *ngFor="let item of items$ | async">
+        <div [itemTransactionBorder]='item.merchant' class="transaction-item">
+          <div class="transaction-info-container">
+            <p class="date">{{ item.transactionDate | customDate }}</p>
+            <img class="img" [src]="item.merchantLogo" />
+            <div class="merchant-container">
+              <p class="merchant">{{ item.merchant }}</p>
+              <p class="transactionType">{{ item.transactionType }}</p>
+              <div class="amount-mobile">-${{ item.amount }}</div>
+            </div>
+          </div>
+          <div class="amount-container">
+            <div class="amount">-${{ item.amount }}</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

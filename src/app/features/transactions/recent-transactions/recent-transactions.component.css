@@ -1,3 +1,13 @@
+@media screen and (min-width: 1175px) {
+  .container{
+    padding-right: 20px;
+  }
+}
+
+.recent-transaction-ControlsAndList-container{
+  background-color: white;
+}
+
 .recent-transactions-container {
   width: 100%;
 }
@@ -26,6 +36,7 @@
   background-color: rgb(12, 131, 151) !important;
 }
 
+
 .controls {
   padding: 40px 20px;
   display: flex;
@@ -35,6 +46,7 @@
   flex: 1;
   display: flex;
   justify-content: flex-end;
+  align-items: flex-end;
 }
 
 @media screen and (max-width: 992px) {
@@ -50,6 +62,9 @@
   background-color: white;
   height: fit-content;
   padding: 10px 15px;
+  font-size: 15px !important;
+  height: 100%;
+  width: 100%;
 }
 
 .custom-select {

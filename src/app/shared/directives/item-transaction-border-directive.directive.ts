@@ -1,14 +1,14 @@
 import {Directive,ElementRef,OnInit, Renderer2, Input} from '@angular/core'
 const merchantColors:any = {
-    'The Tea Lounge': 'red',
-    'Texaco': 'green',
-    'Amazon Online Store' : 'blue',
-    '7-Eleven': 'yellow',
-    'H&M Online Store': 'grey',
-    'Jerry Hildreth': 'purple',
-    'Lawrence Pearson': 'orange',
-    'Whole Foods': 'black',
-    'Southern Electric Company': 'teal'
+    'The Tea Lounge': '#12a580',
+    'Texaco': '#d51270',
+    'Amazon Online Store' : '#c12020',
+    '7-Eleven': '#c89616',
+    'H&M Online Store': '#e25a2c',
+    'Jerry Hildreth': '#1181aa',
+    'Lawrence Pearson': '#1180aa',
+    'Whole Foods': '#12a580',
+    'Southern Electric Company': '#fbbb1b'
 }
 
 @Directive({
