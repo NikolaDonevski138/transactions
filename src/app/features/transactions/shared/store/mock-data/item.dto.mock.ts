@@ -1,4 +1,4 @@
-import { ItemDto } from '../../models/item.dto';
+import { ItemDto } from '../../../../../shared/models/item.dto';
 
 export const itemDtos: ItemDto[] = [
   {

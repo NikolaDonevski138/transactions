@@ -1,27 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { StoreModule } from '@ngrx/store';
-import * as fromApp from '../shared/store';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { UnsubscribeComponent } from './components/unsubscribe/unsubscribe.component';
-import { ModalComponent } from './custom-modal/modal.component';
+
+
+
 import { ItemTransactionBorderDirective } from './directives/item-transaction-border-directive.directive';
 import { CustomDatePipe } from './pipes/dataTransformPipe';
 
 @NgModule({
-  declarations: [ItemTransactionBorderDirective, UnsubscribeComponent, ModalComponent, CustomDatePipe],
+  declarations: [ItemTransactionBorderDirective, UnsubscribeComponent, ConfirmationDialogComponent, CustomDatePipe],
   imports: [
-    StoreModule.forRoot(fromApp.appReducer),
-    StoreRouterConnectingModule.forRoot(),
     CommonModule,
   ],
   exports: [
     ItemTransactionBorderDirective,
     UnsubscribeComponent,
-    ModalComponent,
+    ConfirmationDialogComponent,
     CustomDatePipe,
-    // StoreModule,
-    // StoreRouterConnectingModule,
     CommonModule,
   ],
 })

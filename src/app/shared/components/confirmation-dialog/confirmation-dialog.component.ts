@@ -1,11 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'custom-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css'],
+  selector: 'confirmation-dialog',
+  templateUrl: './confirmation-dialog.component.html',
+  styleUrls: ['./confirmation-dialog.component.css'],
 })
-export class ModalComponent {
+export class ConfirmationDialogComponent {
   @Input() message: string;
   @Output() close = new EventEmitter<void>();
   @Output() confirm = new EventEmitter<void>();

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import * as fromActions from '../../shared/store/transaction.actions';
-import * as fromApp from '../../shared/store/transaction.reducer';
+import * as fromActions from '../shared/store/transaction.actions';
+import * as fromApp from '../shared/store/transaction.reducer';
 
 @Component({
   selector: 'app-make-transfer',

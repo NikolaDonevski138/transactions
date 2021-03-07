@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import * as appStore from '../../shared/store';
-import * as transactionActions from '../../shared/store/transaction.actions';
+import * as appStore from '../shared/store';
+import * as transactionActions from '../shared/store/transaction.actions';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { UnsubscribeComponent } from '../../shared/components/unsubscribe/unsubscribe.component';
-import { ItemDto } from '../../shared/models/item.dto';
+
+
+import { UnsubscribeComponent } from 'src/app/shared/components/unsubscribe/unsubscribe.component';
+import { ItemDto } from '../../../shared/models/item.dto';
 
 @Component({
   selector: 'app-recent-transactions',

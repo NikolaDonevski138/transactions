@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+
 import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
+// import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
@@ -12,6 +14,8 @@ import { HeaderComponent } from './core/header/header.component';
     BrowserModule,
     AppRoutingModule,
     RouterModule,
+    // StoreModule.forRoot(fromApp.appReducer)
+
   ],
   providers: [],
   bootstrap: [AppComponent],

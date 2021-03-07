@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { MainComponent } from './main/main.component';
-import { TransactionModule } from './main/transaction-module.module';
-import { SharedModule } from './shared/shared-module.module';
+import { RouterModule, Routes } from '@angular/router';
+import { TransactionsComponent } from './features/transactions/transactions.component';
 
 const routes: Routes = [{ path: '', redirectTo: '/transactions', pathMatch: 'full' },
 {
   path: 'transactions',
-  //loadChildren: './main/transaction-module.module#TransactionModule'
-  component:MainComponent
+  //loadChildren: () => import('./features/transactions/transactions.module').then(m => m.TransactionsModule),
+  // canActivate:[] //Ovde Guard
+  loadChildren: () => import('./features/transactions/transactions.module').then(m => m.TransactionsModule)
 },
 {
   path: '**',
@@ -16,8 +15,9 @@ const routes: Routes = [{ path: '', redirectTo: '/transactions', pathMatch: 'ful
 },];
 
 @NgModule({
-  imports: [SharedModule,RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}
 

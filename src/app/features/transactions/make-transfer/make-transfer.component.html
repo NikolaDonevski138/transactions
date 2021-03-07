@@ -3,12 +3,12 @@
     <h1>Make a Transfer</h1>
   </div>
 
-  <custom-modal
+  <confirmation-dialog
     [message]="messageForModal"
     *ngIf="submitedForTransaction"
     (close)="onClose()"
     (confirm)="onSuccess()"
-  ></custom-modal>
+  ></confirmation-dialog>
 
   <form [formGroup]="makeTransferGroup" (ngSubmit)="onSubmit()">
     <div formGroupName="accountName">

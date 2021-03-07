@@ -1,6 +1,7 @@
 import * as fromActions from './transaction.actions';
 import { itemDtos } from './mock-data/item.dto.mock';
-import { ItemDto } from '../models/item.dto';
+import { ItemDto } from 'src/app/shared/models/item.dto';
+
 
 export interface TransactionState {
   items: ItemDto[];
