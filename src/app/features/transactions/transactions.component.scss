@@ -1,0 +1,50 @@
+.main {
+  display: flex;
+  flex-direction: row;
+  padding: 50px 0;
+
+  :first-child {
+    flex: 1;
+  }
+  :nth-child(2) {
+    flex: 3;
+  }
+
+  @media screen and (min-width: 1556px) {
+    display: flex;
+    flex-direction: row;
+    padding: 50px 80px;
+  }
+
+  @media screen and (max-width: 1555px) {
+    :first-child {
+      flex: 1;
+    }
+
+    :nth-child(2) {
+      flex: 2;
+    }
+  }
+
+  @media screen and (max-width: 1175px) {
+    :first-child {
+      flex: 1;
+    }
+
+    :nth-child(2) {
+      flex: 1;
+    }
+  }
+
+  @media screen and (max-width: 1175px) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (max-width: 504) {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    padding: 0px !important;
+  }
+}

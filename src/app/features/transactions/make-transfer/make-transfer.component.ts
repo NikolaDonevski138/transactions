@@ -7,7 +7,7 @@ import * as fromApp from '../shared/store/transaction.reducer';
 @Component({
   selector: 'app-make-transfer',
   templateUrl: './make-transfer.component.html',
-  styleUrls: ['./make-transfer.component.css'],
+  styleUrls: ['./make-transfer.component.scss'],
 })
 export class MakeTransferComponent implements OnInit {
   makeTransferGroup: any;
@@ -62,12 +62,10 @@ export class MakeTransferComponent implements OnInit {
       'accountName'
     ].value.toAccount;
     this.amount = this.makeTransferGroup.controls['amount'].value;
-   
-    
+
     if (this.makeTransferGroup.status === 'VALID') {
       this.submitedForTransaction = true;
     }
-
   }
 
   isNumberAboveTheLimit(control: FormControl): { [s: string]: boolean } | null {

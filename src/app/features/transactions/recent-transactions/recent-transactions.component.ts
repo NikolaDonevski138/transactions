@@ -7,14 +7,13 @@ import * as transactionActions from '../shared/store/transaction.actions';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-
 import { UnsubscribeComponent } from 'src/app/shared/components/unsubscribe/unsubscribe.component';
 import { ItemDto } from '../../../shared/models/item.dto';
 
 @Component({
   selector: 'app-recent-transactions',
   templateUrl: './recent-transactions.component.html',
-  styleUrls: ['./recent-transactions.component.css'],
+  styleUrls: ['./recent-transactions.component.scss'],
 })
 export class RecentTransactionsComponent
   extends UnsubscribeComponent

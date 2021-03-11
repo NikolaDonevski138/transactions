@@ -3,11 +3,13 @@
   border-bottom: 3px solid rgb(238, 110, 48);
   border-top: 1px solid rgb(238, 110, 48);
   display: flex;
-}
 
-
-@media screen and (max-width: 514px) {
-  img{
-    width:80%;
+  @media screen and (min-width: 1556px) {
+    padding: 20px 50px 20px 100px;
+  }
+  @media screen and (max-width: 580px) {
+    img {
+      width: 80%;
+    }
   }
 }
