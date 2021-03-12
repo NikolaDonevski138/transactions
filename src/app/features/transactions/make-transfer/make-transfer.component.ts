@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { CheckEnteredNumber } from '../shared/validators/CheckEnteredNumber';
 import * as fromActions from '../shared/store/transaction.actions';
 import * as fromApp from '../shared/store/transaction.reducer';
+import { itemDtos } from '../shared/store/mock-data/item.dto.mock';
 
 @Component({
   selector: 'app-make-transfer',
@@ -28,7 +30,7 @@ export class MakeTransferComponent implements OnInit {
       }),
       amount: new FormControl(null, [
         Validators.required,
-        this.isNumberAboveTheLimit.bind(this),
+        CheckEnteredNumber.isNumberAboveTheLimit.bind(this),
       ]),
     });
   }
@@ -44,6 +46,8 @@ export class MakeTransferComponent implements OnInit {
       new fromActions.TransferMoney({
         amount: this.amount,
         merchant: this.toAccount,
+        transactionType: 'Card Payment',
+        merchantLogo: itemDtos[0].merchantLogo,
         transactionDate: dateInSeconds,
       })
     );
@@ -66,12 +70,5 @@ export class MakeTransferComponent implements OnInit {
     if (this.makeTransferGroup.status === 'VALID') {
       this.submitedForTransaction = true;
     }
-  }
-
-  isNumberAboveTheLimit(control: FormControl): { [s: string]: boolean } | null {
-    if (control.value > 500 || control.value < 1) {
-      return { numberIsAboveLimit: true };
-    }
-    return null;
   }
 }

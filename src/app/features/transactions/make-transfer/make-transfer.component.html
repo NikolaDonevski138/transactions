@@ -1,67 +1,76 @@
 <div class="container">
-<div class="form-container">
-  <div class="header">
-    <img src='../../../../assets/arrows.png' alt="img">
-    <h1>Make a Transfer</h1>
-  </div>
-
-  <confirmation-dialog
-    [message]="messageForModal"
-    *ngIf="submitedForTransaction"
-    (close)="onClose()"
-    (confirm)="onSuccess()"
-  ></confirmation-dialog>
-
-  <form [formGroup]="makeTransferGroup" (ngSubmit)="onSubmit()">
-    <div class="controls-container">
-      <div formGroupName="accountName">
-      <div style="margin-top: 30px">
-        <label for="fromacc">FROM ACCOUNT</label>
-        <input
-        type="text"
-        id="fromacc"
-            formControlName="fromAccount"
-            [disabled]="true"
-          />
-        </div>
-        <div style="margin-top: 30px">
-          <label for="toacc">TO ACCOUNT</label>
-          <input type="text" id="toacc" formControlName="toAccount" />
-          <span
-            *ngIf="
-            makeTransferGroup.controls['accountName'].controls['toAccount']?.status === 'VALID' ? false : true &&
-            makeTransferGroup.controls['accountName'].controls['toAccount'].touched
-            "
-            ><p>Please enter the name to sending account</p></span
-          >
-        </div>
-      </div>
-      <div>
-        <div style="margin-top: 30px">
-          <label for="amount">AMOUNT</label>
-          <input type="number" id="amount" formControlName="amount" />
-        </div>
-        <span
-          *ngIf="
-            !makeTransferGroup.controls['amount'].valid &&
-            makeTransferGroup.controls['amount'].touched
-          "
-        >
-          <span *ngIf="makeTransferGroup.controls['amount'].errors?.required"
-            ><p>This field is required</p></span
-          >
-          <span
-            *ngIf="
-              makeTransferGroup.controls['amount'].errors?.numberIsAboveLimit
-            "
-            ><p>Please enter amount between 1 and 500$</p></span
-          >
-        </span>
-      </div>
-      <div style="margin-top: 30px" class="btn-container">
-        <button class="btn" type="submit">Submit</button>
-      </div>
+  <div class="form-container">
+    <div class="header">
+      <img src="../../../../assets/arrows.ico" alt="img" />
+      <h1>Make a Transfer</h1>
     </div>
-  </form>
-</div>
+
+    <confirmation-dialog
+      [message]="messageForModal"
+      *ngIf="submitedForTransaction"
+      (close)="onClose()"
+      (confirm)="onSuccess()"
+    ></confirmation-dialog>
+
+    <form [formGroup]="makeTransferGroup" (ngSubmit)="onSubmit()">
+      <div class="controls-container">
+        <div formGroupName="accountName">
+          <div style="margin-top: 30px">
+            <label for="fromacc">FROM ACCOUNT</label>
+            <input
+              type="text"
+              id="fromacc"
+              formControlName="fromAccount"
+              [disabled]="true"
+            />
+          </div>
+          <div style="margin-top: 30px">
+            <label for="toacc">TO ACCOUNT</label>
+            <input type="text" id="toacc" formControlName="toAccount" />
+            <span
+              *ngIf="
+                makeTransferGroup.controls['accountName'].controls['toAccount']
+                  ?.status === 'VALID'
+                  ? false
+                  : true &&
+                    makeTransferGroup.controls['accountName'].controls[
+                      'toAccount'
+                    ].touched
+              "
+              ><p class="invalid-msg">
+                Please enter the name to sending account
+              </p></span
+            >
+          </div>
+        </div>
+        <div>
+          <div style="margin-top: 30px">
+            <label for="amount">AMOUNT</label>
+            <input type="number" id="amount" formControlName="amount" />
+          </div>
+          <span
+            *ngIf="
+              !makeTransferGroup.controls['amount'].valid &&
+              makeTransferGroup.controls['amount'].touched
+            "
+          >
+            <span *ngIf="makeTransferGroup.controls['amount'].errors?.required"
+              ><p class="invalid-msg">This field is required</p></span
+            >
+            <span
+              *ngIf="
+                makeTransferGroup.controls['amount'].errors?.numberIsAboveLimit
+              "
+              ><p class="invalid-msg">
+                Please enter amount between 1 and 500$
+              </p></span
+            >
+          </span>
+        </div>
+        <div style="margin-top: 30px" class="btn-container">
+          <button class="btn" type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

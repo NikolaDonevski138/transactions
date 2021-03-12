@@ -1,3 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500&display=swap");
+
+$header-color: rgb(12, 131, 151);
+$btn-color: rgb(238, 112, 51);
+$input-border: 1px solid black;
+$input-border-invalid: 1px solid red;
+
 @media screen and (min-width: 505px) {
   .container {
     padding: 0 20px;
@@ -15,18 +22,18 @@
   input[type="text"],
   input[type="number"] {
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: $input-border;
     display: block;
-    padding: 20px 0px 20px 10px;
+    padding: 10px 0;
     border-bottom-width: 80%;
   }
   .btn-container {
-    display: flex !important;
-    justify-content: flex-start !important;
+    display: flex;
+    justify-content: flex-start;
   }
 
   .btn {
-    border-radius: 5px !important;
+    border-radius: 5px;
   }
 }
 
@@ -55,18 +62,24 @@
   background-color: white;
 
   .header {
-    background-color: rgb(12, 131, 151);
+    background-color: $header-color;
     display: flex;
     padding-left: 10px;
+    font-size: 10px;
 
     img {
       height: 25px;
       align-self: center;
-      background-color: rgb(12, 131, 151);
     }
 
     h1 {
       color: white;
+      margin: 3px 0;
+      font-family: "Kanit";
+      font-weight: 100;
+      padding-left: 0;
+      width: 80%;
+      text-align: center;
     }
   }
 
@@ -78,25 +91,36 @@
     padding-left: 10px;
   }
   label {
-    padding-left: 10px;
+    padding-left: 0;
+    font-family: "Kanit";
+    font-weight: 500;
   }
 
   input.ng-invalid.ng-touched {
-    border-bottom: 1px solid red;
+    border-bottom: $input-border-invalid;
   }
 
   input[type="text"],
   input[type="number"] {
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: $input-border;
     display: block;
-    padding: 20px 0px 20px 10px;
+    padding: 10px 0;
     width: 95%;
+    font-family: "Kanit";
+    font-weight: 200;
   }
 
   input[type="text"]:focus,
   input[type="number"]:focus {
     outline: none;
+  }
+
+  .invalid-msg {
+    font-family: "Kanit";
+    font-weight: 200;
+    color: red;
+    margin-bottom: 5px;
   }
 
   .btn-container {
@@ -111,6 +135,11 @@
     border-radius: 5px;
     border: none;
     color: white;
-    background-color: rgb(238, 112, 51);
+    background-color: $btn-color;
   }
+}
+
+p {
+  margin-top: 3px;
+  padding: 0;
 }

@@ -1,95 +1,10 @@
+$header-color: rgb(12, 131, 151);
+$grey-border: 1px solid #ccc;
+
 @media screen and (min-width: 1175px) {
-  .container{
+  .container {
     padding-right: 20px;
   }
-}
-
-.recent-transaction-ControlsAndList-container{
-  background-color: white;
-}
-
-.recent-transactions-container {
-  width: 100%;
-}
-
-.title-container {
-  display: flex;
-  padding: 30px 20px;
-  background-color: rgb(12, 131, 151);
-}
-
-.title-container > :last-child {
-  padding: 0px;
-  margin: 0px;
-  color: white;
-  display: block;
-  flex: 1;
-  text-align: center;
-}
-
-.transaction-item-container {
-  display: flex;
-  padding: 0px 20px;
-}
-
-.logo-recent-transactions {
-  background-color: rgb(12, 131, 151) !important;
-}
-
-
-.controls {
-  padding: 40px 20px;
-  display: flex;
-}
-
-.sort-container-group {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
-
-@media screen and (max-width: 992px) {
-  .sort-container-group {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.controls-btn {
-  border: 1px solid #ccc;
-  background-color: white;
-  height: fit-content;
-  padding: 10px 15px;
-  font-size: 15px !important;
-  height: 100%;
-  width: 100%;
-}
-
-.custom-select {
-  height: fit-content;
-  padding: 10px 15px;
-  border: 1px solid #ccc;
-  background-color: white;
-}
-
-.searchingInput {
-  flex: 1;
-  border: none;
-  border-bottom: 1px solid #ccc;
-  padding: 10px;
-}
-
-.transaction-item {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid black;
-  padding: 10px;
-  border-top: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
 }
 
 @media screen and (min-width: 500px) {
@@ -103,35 +18,154 @@
     display: none;
   }
   .merchant-container {
-    padding: 0px !important;
+    padding: 0;
   }
 
   .img {
-    padding: 0px 10px !important;
+    padding: 0 10px;
     width: 50px;
     height: 50px;
   }
 }
 
-.transaction-info-container {
-  display: flex;
+.recent-transactions-container {
+  max-width: 1100px;
+
+  .title-container {
+    display: flex;
+    padding: 20px 20px;
+    background-color: $header-color;
+
+    :last-child {
+      padding: 0;
+      margin: 0;
+      color: white;
+      display: block;
+      font-family: "Kanit";
+      font-weight: 200;
+      font-size: 20px;
+      flex: 1;
+      text-align: center;
+    }
+  }
 }
 
-.date {
-  padding: 0px 20px;
-}
+.recent-transaction-ControlsAndList-container {
+  background-color: white;
+  padding-bottom: 20px;
 
-.img {
-  padding: 0px 30px;
-  width: 50px;
-  height: 50px;
-}
+  .controls {
+    padding: 40px 20px;
+    display: flex;
 
-.merchant {
-  padding: 0px;
-  margin: 0px;
-}
+    .searchingInput {
+      flex: 1;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      padding: 10px;
+      font-family: "Kanit";
+      font-weight: 200;
+    }
+  }
 
-.merchant-container {
-  padding-left: 15px;
+  @media screen and (max-width: 992px) {
+    .sort-container-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      .controls-btn {
+        padding: 10px 10px;
+        max-width: 130px;
+        width: 100%;
+        background-color: white;
+        border: $grey-border;
+      }
+    }
+  }
+
+  .sort-container-group {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    .sort-by {
+      padding: 0;
+      margin-bottom: 0;
+      flex: 4;
+      text-align: center;
+      font-family: "Kanit";
+      font-size: 15px;
+      font-weight: 500;
+    }
+    @media screen and (min-width: 992px) {
+      .controls-btn {
+        border: $grey-border;
+        background-color: white;
+        height: fit-content;
+        padding: 0 5px;
+        font-size: 13px;
+        height: 95%;
+        font-family: "Kanit";
+        font-weight: 300;
+        flex: 3;
+      }
+    }
+  }
+
+  .transaction-item-container {
+    display: flex;
+    padding: 0 20px;
+
+    .transaction-item {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 10px 0 10px;
+      border-top: $grey-border;
+      border-right: $grey-border;
+      border-bottom: $grey-border;
+
+      .transaction-info-container {
+        display: flex;
+
+        .date {
+          width: 50px;
+          padding: 0 25px;
+          font-family: "Kanit";
+          font-weight: 200;
+          font-size: 15px;
+        }
+
+        .img {
+          padding: 0 30px;
+          width: 40px;
+          height: 40px;
+        }
+
+        .merchant-container {
+          padding-left: 15px;
+
+          .merchant {
+            padding: 0;
+            margin: 0;
+            font-family: "Kanit";
+            font-weight: 400;
+          }
+
+          .transfer-type {
+            margin: 0;
+            font-weight: 200;
+            font-size: 15px;
+          }
+        }
+      }
+
+      .amount-container > .amount {
+        font-family: "Kanit";
+        font-weight: 500;
+      }
+    }
+  }
 }
